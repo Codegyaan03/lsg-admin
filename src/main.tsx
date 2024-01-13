@@ -12,6 +12,10 @@ import { Toaster } from "react-hot-toast";
 import ErrorBoundary from "./ErrorBoundary";
 import Five00 from "./components/ErrorPage/500";
 import Loader from "./components/Loader";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -22,16 +26,21 @@ root.render(
     <ErrorBoundary fallback={<Five00 />}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <ThemeProvider>
-            <Toaster />
-            <Loader />
-            <Router>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/*" element={<App />} />
-              </Routes>
-            </Router>
-          </ThemeProvider>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <ThemeProvider>
+              <Toaster />
+              <Loader />
+              <div className="h-screen bg-[#f0f5f9]">
+                <Router>
+                  <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/*" element={<App />} />
+                  </Routes>
+                </Router>
+              </div>
+            </ThemeProvider>
+          </QueryClientProvider>
         </PersistGate>
       </Provider>
     </ErrorBoundary>

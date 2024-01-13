@@ -12,8 +12,8 @@ function UserMenu() {
 
   const trigger = useRef<HTMLButtonElement>(null);
   const dropdown = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: any) => {
@@ -50,14 +50,14 @@ function UserMenu() {
       >
         <img
           className="w-8 h-8 rounded-full"
-          src={user.avtar}
+          src={"profile.jpg"}
           width="32"
           height="32"
           alt="User"
         />
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">
-            {user.name}
+            Deepak
           </span>
           <svg
             className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400"
@@ -84,8 +84,8 @@ function UserMenu() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
-            <div className="font-medium text-slate-800">{user.name}</div>
-            <div className="text-xs text-slate-500 italic">{user.role}</div>
+            <div className="font-medium text-slate-800">Deepak</div>
+            <div className="text-xs text-slate-500 italic">Admin</div>
           </div>
           <ul>
             <li>
@@ -102,10 +102,10 @@ function UserMenu() {
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
                 to="/"
                 onClick={() => {
-                  dispatch(removeToken())
-                  setDropdownOpen(!dropdownOpen)
-                  toast.success('Successfully logout!')
-                  navigate('/login')
+                  dispatch(removeToken());
+                  setDropdownOpen(!dropdownOpen);
+                  toast.success("Successfully logout!");
+                  navigate("/login");
                 }}
               >
                 Sign Out
