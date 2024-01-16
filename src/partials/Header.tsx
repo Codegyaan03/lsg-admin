@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({
               setSidebarExpanded((prev) => !prev);
             }}
           >
-            <HiOutlineMenuAlt2 className={"text-3xl"} />
+            <HiOutlineMenuAlt2 className={"icon"} />
           </button>
 
           {/* Header: Right side */}
@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({
               aria-controls="search-modal"
             >
               <span className="sr-only">Search</span>
-              <HiOutlineSearch />
+              <HiOutlineSearch className={"icon"} />
             </button>
             <SearchModal
               id="search-modal"

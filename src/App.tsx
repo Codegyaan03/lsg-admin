@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./partials/Sidebar";
 import Header from "./partials/Header";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import routes from "./partials/routes";
-import "./App.scss";
-
-import Four0Four from "./components/ErrorPage/404";
+import "./App.css";
+import { useDataSelector } from "./redux/store";
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "./hooks/api-hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { setIsLoad } from "./redux/features/LoaderSlice";
+import { setUserData } from "./redux/features/AuthSlice";
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const { getLoginUser } = useAuth();
+
+  const { token } = useDataSelector("auth");
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["user"],
+    queryFn: () => getLoginUser(),
+    enabled: !!token,
+  });
+
+  useEffect(() => {
+    dispatch(setIsLoad(true));
+    if (!isLoading && data) {
+      dispatch(setIsLoad(false));
+      dispatch(setUserData({ ...data.data.result }));
+    }
+  }, [isLoading, data]);
+
+  if (!token) return <Navigate to="/login" />;
 
   return (
     <div className="flex p-4 lg:gap-4 h-full">
@@ -51,8 +75,6 @@ const App = () => {
                   </React.Fragment>
                 );
               })}
-
-              <Route path="*" element={<Four0Four />} />
             </Routes>
           </div>
         </main>

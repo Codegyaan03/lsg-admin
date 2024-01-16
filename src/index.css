@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* &::-webkit-scrollbar {
+  width: 0px;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+* &::-webkit-scrollbar-thumb {
+  width: 100%;
+  background-color: rgb(128, 128, 128);
+}
+
+@layer utilities {
+  .icon {
+    @apply text-xl text-blue-gray-700 hover:text-blue-gray-900;
+  }
+}

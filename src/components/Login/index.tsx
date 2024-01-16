@@ -2,15 +2,43 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { loginProps } from "./interface";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Card,
+  Input,
+  Checkbox,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import { useMutation } from "@tanstack/react-query";
+import { useDataSelector } from "../../redux/store";
+import toast from "react-hot-toast";
+import { setToken } from "../../redux/features/AuthSlice";
+import { useAuth } from "../../hooks/api-hooks/useAuth";
 
 const Login: React.FC<loginProps> = () => {
-  const token = useSelector((state: RootState) => state.auth.token);
+  const { token } = useDataSelector("auth");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleLogin = async (data: { email: string; password: string }) => {};
+  const { login } = useAuth();
+
+  const loginMutation = useMutation({
+    mutationFn: (data: {}) => login(data),
+    onSuccess: (data) => {
+      dispatch(setToken({ token: data.data.result.access_token }));
+      navigate("/");
+    },
+
+    onError: (error) => {
+      if (error.response?.data.message) {
+        toast.error(error.response?.data.message);
+      }
+      console.log(error);
+    },
+  });
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
@@ -27,7 +55,7 @@ const Login: React.FC<loginProps> = () => {
     },
     validationSchema,
     onSubmit: (data) => {
-      handleLogin(data);
+      loginMutation.mutate(data);
     },
   });
 
@@ -36,66 +64,118 @@ const Login: React.FC<loginProps> = () => {
   }, [token]);
 
   return (
-    <div className="overflow-hidden border w-full min-h-screen bg-slate-50 font-['Poppins']">
-      <div>
-        <div className="w-full py-14 px-6 m-auto rounded-lg lg:max-w-xl">
-          <div className="flex justify-center">
-            <img alt="" className="h-14" src={""} />
+    <div className="overflow-hidden border w-full min-h-screen bg-slate-50">
+      <div className="h-screen w-full flex justify-center items-center">
+        <Card color="white" className="px-8 py-8 w-[500px]" shadow={false}>
+          <Typography
+            className="flex gap-2 justify-center items-center pb-8 font-dosis"
+            variant="h4"
+            color="blue-gray"
+          >
+            <img src="vite.svg" alt="logo" className="h-6 w-6" /> Lokseva Gyaan
+          </Typography>
+
+          <div className="flex justify-between items-center my-10 gap-5">
+            <Button
+              variant="outlined"
+              className="rounded-full w-full border-[#e5eaef] flex justify-center items-center gap-2 font-normal "
+            >
+              <FcGoogle className="text-xl" />
+              <Typography variant="paragraph" className="!text-[12px]">
+                Sign in with Google
+              </Typography>
+            </Button>
+
+            <Button
+              variant="outlined"
+              className="rounded-full w-full border-[#e5eaef] flex justify-center items-center gap-2 font-normal "
+            >
+              <FaFacebook className="text-xl text-blue-500" />
+              <Typography variant="small" className="!text-[12px]">
+                Sign in with FB
+              </Typography>
+            </Button>
           </div>
-          <h1 className="text-center text-2xl font-extrabold text-gray-900 m-9">
-            Log In To Your Acount
-          </h1>
-          <form className="mt-6" onSubmit={formik.handleSubmit}>
-            <div className="mb-2">
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold text-gray-800"
-              >
-                Email
-              </label>
-              <input
+
+          <div>
+            <hr />
+            <div className="flex justify-center items-center">
+              <p className="bg-white -mt-3 px-2">or sign in with</p>
+            </div>
+          </div>
+          <form className="mt-8 mb-2 w-full" onSubmit={formik.handleSubmit}>
+            <div className="mb-1 flex flex-col gap-6">
+              <Typography variant="h6" color="blue-gray" className="-mb-3 ">
+                Your Email
+              </Typography>
+              <Input
+                size="lg"
+                placeholder="name@mail.com"
                 type="email"
-                className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-[#01b399]  focus:ring-[#01b399]  focus:outline-none focus:ring focus:ring-opacity-40"
+                label="Email"
+                variant="outlined"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
                 name="email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
+                value={formik.values.email || ""}
+                error={formik.touched.email && Boolean(formik.errors.email)}
               />
-              <span className="text-red-500 text-xs">
-                {formik.errors.email && formik.touched.email
-                  ? "Email is invalid !"
-                  : ""}
-              </span>
-            </div>
-            <div className="mb-2">
-              <label
-                htmlFor="password"
-                className="block text-sm font-semibold text-gray-800"
-              >
-                Password
-              </label>
-              <input
+
+              <Typography variant="h6" color="blue-gray" className="-mb-3 ">
+                Your Password
+              </Typography>
+              <Input
                 type="password"
-                name="password"
+                size="lg"
+                placeholder="********"
+                variant="outlined"
+                label="Password"
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                value={formik.values.password}
-                className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-[#01b399] focus:ring-[#01b399] focus:outline-none focus:ring focus:ring-opacity-40"
+                name="password"
+                value={formik.values.password || ""}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
               />
-              <span className="text-red-500 text-xs">
-                {formik.errors.password && formik.touched.password
-                  ? "Password is Invalid !"
-                  : ""}
-              </span>
             </div>
-            <div className="mt-6">
-              <button
-                type="submit"
-                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-[#01b399] rounded-md hover:bg-[#01b399]  focus:outline-none focus:bg-[#01b399] "
-              >
-                Login
-              </button>
+
+            <div className="flex justify-between items-center">
+              <div className="flex gap-1 items-center ">
+                <Checkbox color="blue" defaultChecked />
+                <Typography variant="paragraph">Remember me</Typography>
+              </div>
+
+              <div>
+                <Typography
+                  variant="paragraph"
+                  color="blue"
+                  className="font-semibold"
+                >
+                  Forget Password?
+                </Typography>
+              </div>
+            </div>
+
+            <Button
+              className="mt-6  !rounded-full font-normal"
+              color="blue"
+              fullWidth
+              type="submit"
+            >
+              Sing in
+            </Button>
+
+            <div className="flex justify-center items-center mt-8">
+              <Typography variant="paragraph" color="gray">
+                New to Lokseva?{" "}
+                <span className="text-blue-600">
+                  <Link to="/signup">Sign up</Link>
+                </span>
+              </Typography>
             </div>
           </form>
-        </div>
+        </Card>
       </div>
     </div>
   );

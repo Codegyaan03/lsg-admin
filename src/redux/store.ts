@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import rootReducer from "./rootReducer";
+import { useSelector } from "react-redux";
 const persistConfig = {
   key: "lsg-scrape",
   storage,
@@ -17,4 +18,10 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 export { store, persistor };
-export type RootState = ReturnType<typeof store.getState>;
+type RootState = ReturnType<typeof store.getState>;
+
+export const useDataSelector = <T extends keyof RootState>(
+  type: T
+): RootState[T] => {
+  return useSelector((state: RootState) => state[type]);
+};

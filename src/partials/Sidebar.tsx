@@ -92,7 +92,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           </button>
           {/* Logo */}
           <NavLink end to="/" className="block">
-            <img src="vite.svg" alt="logo" className="h-8 w-8" />
+            <img src="/vite.svg" alt="logo" className="h-8 w-8" />
           </NavLink>
         </div>
 

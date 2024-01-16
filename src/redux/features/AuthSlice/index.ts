@@ -18,6 +18,7 @@ const authSlice = createSlice({
     setToken: (store, action: PayloadAction<{ token: string }>) => {
       store.token = action.payload.token;
     },
+
     removeToken: (store) => {
       store.token = "";
     },

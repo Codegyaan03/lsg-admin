@@ -4,12 +4,11 @@ import Transition from "../../utils/Transition";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "../../redux/features/AuthSlice";
 import { toast } from "react-hot-toast";
-import { RootState } from "../../redux/store";
+import { useDataSelector } from "../../redux/store";
 
 function UserMenu() {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-  const user = useSelector((state: RootState) => state.auth.userData);
-
+  const { userData } = useDataSelector("auth");
   const trigger = useRef<HTMLButtonElement>(null);
   const dropdown = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
@@ -49,15 +48,16 @@ function UserMenu() {
         aria-expanded={dropdownOpen}
       >
         <img
-          className="w-8 h-8 rounded-full"
-          src={"profile.jpg"}
+          className="w-8 h-8 rounded-full object-cover"
+          src={userData.profilePic || "profile.jpg"}
           width="32"
           height="32"
           alt="User"
         />
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">
-            Deepak
+            {userData.firstName ? `${userData.firstName} ` : ""}
+            {userData.lastName ? `${userData.lastName}` : ""}
           </span>
           <svg
             className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400"
@@ -84,8 +84,11 @@ function UserMenu() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
-            <div className="font-medium text-slate-800">Deepak</div>
-            <div className="text-xs text-slate-500 italic">Admin</div>
+            <div className="font-medium text-slate-800">
+              {userData.firstName ? `${userData.firstName} ` : ""}
+              {userData.lastName ? `${userData.lastName}` : ""}
+            </div>
+            <div className="text-xs text-slate-500 italic">{userData.role}</div>
           </div>
           <ul>
             <li>

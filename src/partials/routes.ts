@@ -1,5 +1,6 @@
 import { IconType } from "react-icons";
 import { HiOutlineHome, HiOutlinePencil, HiOutlineUsers } from "react-icons/hi";
+import { TbCloudComputing } from "react-icons/tb";
 import { Dashboard, PostCreate, Posts, Users } from "../pages";
 
 interface Child {
@@ -30,7 +31,7 @@ type Route = RouteWithoutChild | RouteWithChild;
 
 let routes: Route[] = [
   {
-    path: "/",
+    path: "/dashboard",
     icon: HiOutlineHome,
     name: "Dashboard",
     isHaveChild: false,
@@ -38,7 +39,15 @@ let routes: Route[] = [
   },
 
   {
-    path: "/editorials",
+    path: "scrape",
+    icon: TbCloudComputing,
+    name: "Scrape",
+    isHaveChild: false,
+    element: Dashboard,
+  },
+
+  {
+    path: "editorials",
     icon: HiOutlinePencil,
     name: "Editorials",
     isHaveChild: true,
@@ -57,7 +66,7 @@ let routes: Route[] = [
   },
 
   {
-    path: "/users",
+    path: "users",
     icon: HiOutlineUsers,
     name: "Users",
     isHaveChild: true,
