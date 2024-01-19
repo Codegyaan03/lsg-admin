@@ -9,7 +9,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "./hooks/api-hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { setIsLoad } from "./redux/features/LoaderSlice";
-import { setUserData } from "./redux/features/AuthSlice";
+import { removeToken, setUserData } from "./redux/features/AuthSlice";
+import { toast } from "react-toastify";
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
@@ -19,11 +20,32 @@ const App = () => {
 
   const { token } = useDataSelector("auth");
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["user"],
     queryFn: () => getLoginUser(),
     enabled: !!token,
   });
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (token) {
+      const decodedJwt = JSON.parse(atob(token.split(".")[1]));
+      const leftExp = Math.floor(decodedJwt.exp * 1000 - Date.now());
+      if (decodedJwt.exp * 1000 < Date.now()) {
+        toast.warn("Session Expired!");
+        dispatch(removeToken());
+      } else {
+        timeoutId = setTimeout(() => {
+          toast.warn("Session Expired!");
+          dispatch(removeToken());
+        }, leftExp);
+      }
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [token]);
 
   useEffect(() => {
     dispatch(setIsLoad(true));
@@ -31,7 +53,16 @@ const App = () => {
       dispatch(setIsLoad(false));
       dispatch(setUserData({ ...data.data.result }));
     }
-  }, [isLoading, data]);
+
+    if (isError) {
+      dispatch(setIsLoad(false));
+      toast.error("Something went wrong");
+    }
+
+    return () => {
+      dispatch(setIsLoad(false));
+    };
+  }, [isLoading, data, isError]);
 
   if (!token) return <Navigate to="/login" />;
 
@@ -52,7 +83,7 @@ const App = () => {
         />
 
         <main className="flex-1">
-          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full h-full max-w-9xl mx-auto">
+          <div className="py-4 w-full h-full max-w-9xl mx-auto">
             <Routes>
               {routes.map((route, index) => {
                 return (

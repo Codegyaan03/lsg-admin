@@ -208,13 +208,13 @@ const Sidebar: React.FC<SidebarProps> = ({
                         key={index}
                         onClick={() => handleTab("")}
                         className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-                          pathname === item.path && "bg-[#00ccff]"
+                          pathname.includes(item.path) && "bg-[#00ccff]"
                         }`}
                       >
                         <NavLink
                           to={item.path}
                           className={`block hover:text-blue-gray-900 text-blue-gray-700 truncate transition duration-150 ${
-                            pathname === item.path &&
+                            pathname.includes(item.path) &&
                             "text-white hover:text-white"
                           }`}
                         >

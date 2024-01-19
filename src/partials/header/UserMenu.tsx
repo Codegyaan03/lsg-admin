@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Transition from "../../utils/Transition";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "../../redux/features/AuthSlice";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useDataSelector } from "../../redux/store";
 
 function UserMenu() {

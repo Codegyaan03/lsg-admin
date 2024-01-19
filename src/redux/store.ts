@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const persistConfig = {
   key: "lsg-scrape",
   storage,
+  blacklist: ["loader"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
