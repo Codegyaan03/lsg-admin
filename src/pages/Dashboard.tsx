@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { useDispatch } from "react-redux";
+import { useDataSelector } from "../redux/store";
 
 const Dashboard = () => {
-  const token = useSelector((state: RootState) => state.auth.token);
+  const { token } = useDataSelector("auth");
 
   const dispatch = useDispatch();
 

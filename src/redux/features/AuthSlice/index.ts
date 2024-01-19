@@ -3,12 +3,7 @@ import { AuthProps, UserData } from "../../../types/authslice";
 
 const initialState: AuthProps = {
   token: "",
-  userData: {
-    name: "",
-    email: "",
-    avtar: "",
-    role: "",
-  },
+  userData: {} as UserData,
 };
 
 const authSlice = createSlice({
