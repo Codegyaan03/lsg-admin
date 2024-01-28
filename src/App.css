@@ -1,3 +1,12 @@
-.tox-statusbar__branding{
-    display: none;
+.tox-statusbar__branding {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(156, 156, 156);
+  border-radius: 2px;
 }

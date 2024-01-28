@@ -67,7 +67,7 @@ const App = () => {
   if (!token) return <Navigate to="/login" />;
 
   return (
-    <div className="flex p-4 lg:gap-4 h-full">
+    <div className="flex p-4 lg:gap-4 h-full text-[#111c2d]">
       {/* Sidebar */}
       <Sidebar
         sidebarOpen={sidebarOpen}
@@ -76,14 +76,14 @@ const App = () => {
         setSidebarExpanded={setSidebarExpanded}
       />
 
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden px-2">
+      <div className="relative flex flex-col flex-1 px-2 h-full">
         <Header
           setSidebarOpen={setSidebarOpen}
           setSidebarExpanded={setSidebarExpanded}
         />
 
-        <main className="flex-1">
-          <div className="py-4 w-full h-full max-w-9xl mx-auto">
+        <main className="h-[calc(100%-66px)]">
+          <div className="pt-4 w-full h-full max-w-9xl mx-auto">
             <Routes>
               {routes.map((route, index) => {
                 return (
