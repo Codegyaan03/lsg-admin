@@ -49,7 +49,7 @@ function UserMenu() {
       >
         <img
           className="w-8 h-8 rounded-full object-cover"
-          src={userData.profilePic || "profile.jpg"}
+          src={userData.profilePic || "/profile.jpg"}
           width="32"
           height="32"
           alt="User"

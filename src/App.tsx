@@ -83,7 +83,7 @@ const App = () => {
         />
 
         <main className="h-[calc(100%-66px)]">
-          <div className="pt-4 w-full h-full max-w-9xl mx-auto">
+          <div className="pt-12 w-full h-full max-w-9xl mx-auto">
             <Routes>
               {routes.map((route, index) => {
                 return (
