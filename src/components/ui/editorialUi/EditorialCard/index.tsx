@@ -14,7 +14,7 @@ import { RxDot } from "react-icons/rx";
 
 const EditorialCard: React.FC = () => {
   return (
-    <Card className="rounded-[18px] overflow-hidden">
+    <Card className="rounded-[18px] overflow-hidden hover:scale-[1.02] duration-300">
       <CardHeader
         color="blue-gray"
         className="m-0 shadow-none !rounded-none relative"
@@ -26,7 +26,8 @@ const EditorialCard: React.FC = () => {
         <Chip
           variant="ghost"
           value=" 2 min read"
-          className="rounded-full w-auto absolute right-6 bg-white bottom-2 font-body"
+          size="sm"
+          className="rounded-full w-auto absolute right-6 bg-white bottom-2 font-medium"
         />
       </CardHeader>
 
@@ -42,9 +43,13 @@ const EditorialCard: React.FC = () => {
           <Chip
             variant="ghost"
             value="Lifestyle"
-            className="rounded-full px-2 w-2/6 font-body text-xs border-0 text-ellipsis overflow-hidden text-center"
+            className="rounded-full px-2 w-2/6 text-xs border-0 text-ellipsis overflow-hidden text-center"
           />
-          <Typography variant="h5" color="blue-gray" className="mb-2 font-body">
+          <Typography
+            variant="lead"
+            color="blue-gray"
+            className="mb-2 font-medium"
+          >
             As yen tumbles, gadget-loving Japan goes for secondhand iPhones
           </Typography>
         </div>
@@ -58,7 +63,7 @@ const EditorialCard: React.FC = () => {
           <BiMessageAltDetail />
           <span>3</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <RxDot />
           <span>Sun,Jan28</span>
         </div>
