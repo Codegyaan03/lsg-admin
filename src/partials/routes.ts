@@ -1,7 +1,7 @@
 import { IconType } from "react-icons";
 import { HiOutlineHome, HiOutlinePencil, HiOutlineUsers } from "react-icons/hi";
 import { TbCloudComputing } from "react-icons/tb";
-import { Dashboard, PostCreate, Posts, Users, Scrape } from "../pages";
+import { Dashboard, PostCreate, Posts, Users, Scrape, Blogs } from "../pages";
 
 interface Child {
   path: string;
@@ -47,15 +47,20 @@ let routes: Route[] = [
   },
 
   {
-    path: "editorials",
+    path: "contents",
     icon: HiOutlinePencil,
-    name: "Editorials",
+    name: "Contents",
     isHaveChild: true,
     child: [
       {
-        path: "/all",
+        path: "/editorials",
         name: "All Editorials",
         element: Posts,
+      },
+      {
+        path: "/blogs",
+        name: "All Blogs",
+        element: Blogs,
       },
       {
         path: "/create",
