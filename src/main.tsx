@@ -22,7 +22,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Four0Four from "./components/ErrorPage/404";
 import { AxiosError } from "axios";
 import "react-toastify/dist/ReactToastify.css";
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
