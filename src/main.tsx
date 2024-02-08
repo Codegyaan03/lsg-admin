@@ -12,7 +12,7 @@ import { Login } from "./components";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
-import { persistor, store } from "./reduxStore/store";
+import { persistor, store } from "reduxStore/store";
 import { Bounce, ToastContainer } from "react-toastify";
 import ErrorBoundary from "./ErrorBoundary";
 import Five00 from "./components/ErrorPage/500";
@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
 });
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 
 root.render(
@@ -73,7 +73,7 @@ root.render(
         </PersistGate>
       </Provider>
     </ErrorBoundary>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 declare module "@tanstack/react-query" {

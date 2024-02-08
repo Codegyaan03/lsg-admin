@@ -15,7 +15,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useMutation } from "@tanstack/react-query";
 import { useDataSelector } from "reduxStore/store";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { useAuth } from "hooks/api-hooks/useAuth";
 import { setToken } from "reduxStore/features/AuthSlice";
 

@@ -25,7 +25,7 @@ function Help() {
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }:any) => {
+    const keyHandler = ({ keyCode }: any) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
     };

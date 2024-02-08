@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useDataSelector } from "../reduxStore/store";
+import { useDataSelector } from "reduxStore/store";
 
 const Dashboard: React.FC = () => {
   const { token } = useDataSelector("auth");

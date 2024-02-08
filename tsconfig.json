@@ -21,8 +21,8 @@
       "hooks/*": ["./src/hooks/*"],
       "pages/*": ["./src/pages/*"],
       "types/*": ["./src/types/*"],
-      "utils/*": ["./src/pages/*"],
-      "reduxStore/*": ["src/reduxStore/*"],
+      "utils/*": ["./src/utils/*"],
+      "reduxStore/*": ["./src/reduxStore/*"],
     }
   },
   "include": ["src", "globals.d.ts"],

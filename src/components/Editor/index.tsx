@@ -36,9 +36,8 @@ const Editor: React.FC<EditorProps> = ({ content, handleContent }) => {
   const axiosWithoutToken = useAxios(false);
   const editorRef = useRef<MDXEditorMethods>(null);
   async function imageUploadHandler(image: File) {
-    const res = await axiosInstance.get<ApiResponse<{ url: string }>>(
-      "/upload-image"
-    );
+    const res =
+      await axiosInstance.get<ApiResponse<{ url: string }>>("/upload-image");
     const form = new FormData();
     form.append("file", image);
     const imageData = await axiosWithoutToken.put(res.data.result.url, form);

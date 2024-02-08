@@ -45,7 +45,7 @@ const Gallery: React.FC<GalleryProps> = ({ open, handleOpen, editorRef }) => {
                   onClick={() => {
                     editorRef.current?.focus();
                     editorRef.current?.insertMarkdown(
-                      `![](${item.secure_url})`
+                      `![](${item.secure_url})`,
                     );
                     handleOpen();
                   }}
@@ -58,7 +58,7 @@ const Gallery: React.FC<GalleryProps> = ({ open, handleOpen, editorRef }) => {
                   />
                 </Card>
               );
-            }
+            },
           )}
         </div>
       </DialogBody>

@@ -7,7 +7,7 @@ export const useAuth = () => {
   const login = (data: {}) => {
     return axiosInstance.post<ApiResponse<{ access_token: string }>>(
       "/user/login",
-      data
+      data,
     );
   };
 

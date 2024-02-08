@@ -42,7 +42,7 @@ const EditorialCard: React.FC<EditorialCardDataProps> = ({ data }) => {
             variant="ghost"
             value={`${Math.floor(
               (data.content.replace(/<[^>]*>/g, "").match(/\b[a-zA-Z]+\b/g)
-                ?.length || 0) / 200
+                ?.length || 0) / 200,
             )} min read`}
             size="sm"
             className="rounded-full w-auto absolute right-6 bg-white bottom-2 font-medium"
