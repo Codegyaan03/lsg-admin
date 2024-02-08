@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Transition from "../../utils/Transition";
 import { useDispatch, useSelector } from "react-redux";
-import { removeToken } from "../../redux/features/AuthSlice";
+import { removeToken } from "reduxStore/features/AuthSlice";
 import { toast } from "react-toastify";
-import { useDataSelector } from "../../redux/store";
+// import { useDataSelector } from "src/reduxStore/store";
+import Transition from "utils/Transition";
+import { useDataSelector } from "reduxStore/store";
 
 function UserMenu() {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);

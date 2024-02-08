@@ -29,7 +29,7 @@ import "@mdxeditor/editor/style.css";
 import "./editor.css";
 
 import { EditorProps } from "./interface";
-import { useAxios } from "../../hooks/useAxios";
+import { useAxios } from "hooks/useAxios";
 
 const Editor: React.FC<EditorProps> = ({ content, handleContent }) => {
   const axiosInstance = useAxios(true);

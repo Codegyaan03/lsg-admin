@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAxios } from "../useAxios";
-import { Article } from "../../types/editorial";
+import { Article } from "types/editorial";
 
 type scrapeEditorialPostDataType = {
   option: number;

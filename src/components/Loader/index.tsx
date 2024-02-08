@@ -1,5 +1,5 @@
 import { Rings } from "react-loader-spinner";
-import { useDataSelector } from "../../redux/store";
+import { useDataSelector } from "reduxStore/store";
 
 const Loader = () => {
   const { isLoad } = useDataSelector("loader");

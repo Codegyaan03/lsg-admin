@@ -8,7 +8,7 @@ import {
   Card,
 } from "@material-tailwind/react";
 import { MDXEditorMethods } from "@mdxeditor/editor";
-import { useGallery } from "../../hooks/api-hooks/useGallery";
+import { useGallery } from "hooks/api-hooks/useGallery";
 
 interface GalleryProps {
   open: boolean;

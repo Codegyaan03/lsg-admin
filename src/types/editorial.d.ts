@@ -9,4 +9,6 @@ export interface Article {
   };
   createdAt: string;
   updatedAt: string;
+  thumbnail: string;
+  viewersCount: number;
 }

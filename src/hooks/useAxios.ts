@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useDataSelector } from "../redux/store";
+import { useDataSelector } from "../reduxStore/store";
 
 export const useAxios = (withToken: boolean) => {
   const { token } = useDataSelector("auth");

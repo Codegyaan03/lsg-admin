@@ -1,4 +1,4 @@
-import { UserData } from "../../types/authslice";
+import { UserData } from "types/authslice";
 import { useAxios } from "../useAxios";
 
 export const useAuth = () => {

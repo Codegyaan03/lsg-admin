@@ -4,12 +4,12 @@ import Header from "./partials/Header";
 import { Routes, Route, Navigate } from "react-router-dom";
 import routes from "./partials/routes";
 import "./App.css";
-import { useDataSelector } from "./redux/store";
+import { useDataSelector } from "./reduxStore/store";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "./hooks/api-hooks/useAuth";
 import { useDispatch } from "react-redux";
-import { setIsLoad } from "./redux/features/LoaderSlice";
-import { removeToken, setUserData } from "./redux/features/AuthSlice";
+import { setIsLoad } from "./reduxStore/features/LoaderSlice";
+import { removeToken, setUserData } from "./reduxStore/features/AuthSlice";
 import { toast } from "react-toastify";
 
 const App = () => {

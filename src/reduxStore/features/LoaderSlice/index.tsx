@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { LoaderProps } from "../../../types/loaderslice";
+import { LoaderProps } from "../types/loaderslice";
 
 const initialState: LoaderProps = {
   isLoad: false,
