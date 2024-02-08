@@ -14,10 +14,10 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useMutation } from "@tanstack/react-query";
-import { useDataSelector } from "../../redux/store";
-import {toast} from "react-toastify";
-import { setToken } from "../../redux/features/AuthSlice";
-import { useAuth } from "../../hooks/api-hooks/useAuth";
+import { useDataSelector } from "reduxStore/store";
+import { toast } from "react-toastify";
+import { useAuth } from "hooks/api-hooks/useAuth";
+import { setToken } from "reduxStore/features/AuthSlice";
 
 const Login: React.FC<loginProps> = () => {
   const { token } = useDataSelector("auth");

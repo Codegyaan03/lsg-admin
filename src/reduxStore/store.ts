@@ -22,7 +22,7 @@ export { store, persistor };
 type RootState = ReturnType<typeof store.getState>;
 
 export const useDataSelector = <T extends keyof RootState>(
-  type: T
+  type: T,
 ): RootState[T] => {
   return useSelector((state: RootState) => state[type]);
 };

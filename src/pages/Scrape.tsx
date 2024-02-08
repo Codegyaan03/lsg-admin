@@ -2,7 +2,7 @@ import { Button, Drawer, Typography } from "@material-tailwind/react";
 import React, { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import { io } from "socket.io-client";
-import { useDataSelector } from "../redux/store";
+import { useDataSelector } from "reduxStore/store";
 import ScrapeCategoryList from "../components/ScrapeCategoryList";
 import { BiMenuAltRight } from "react-icons/bi";
 

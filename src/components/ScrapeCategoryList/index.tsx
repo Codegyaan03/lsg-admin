@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import ListCollapse from "../ui/ListCollapse";
 import { PiDotsSixVerticalLight } from "react-icons/pi";
 import { TbArrowBadgeRight } from "react-icons/tb";
-import { useScrape } from "../../hooks/api-hooks/useScrape";
+import { useScrape } from "hooks/api-hooks/useScrape";
 
 const ScrapeCategoryList: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState<number>(-1);

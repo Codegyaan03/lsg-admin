@@ -1,4 +1,4 @@
-import { UserData } from "../../types/authslice";
+import { UserData } from "types/authslice";
 import { useAxios } from "../useAxios";
 
 export const useAuth = () => {
@@ -7,7 +7,7 @@ export const useAuth = () => {
   const login = (data: {}) => {
     return axiosInstance.post<ApiResponse<{ access_token: string }>>(
       "/user/login",
-      data
+      data,
     );
   };
 

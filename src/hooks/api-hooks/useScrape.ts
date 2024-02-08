@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAxios } from "../useAxios";
+import { Article } from "types/editorial";
 
 type scrapeEditorialPostDataType = {
   option: number;
@@ -13,7 +14,15 @@ export const useScrape = () => {
       axiosInstance.post<ApiResponse<any>>("/editorial/scrape", data),
   });
 
+  const editorialCardDataQuery = useQuery({
+    queryKey: ["editorials"],
+    queryFn: () => axiosInstance.get<ApiResponse<Article[]>>("/editorial/all"),
+    // enabled:
+  });
+
+  console.log("fdsfsdfdsfd", editorialCardDataQuery.data);
   return {
     scrapeEditorialMutation,
+    editorialCardDataQuery,
   };
 };

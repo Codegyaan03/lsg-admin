@@ -8,7 +8,7 @@ import {
   Card,
 } from "@material-tailwind/react";
 import { MDXEditorMethods } from "@mdxeditor/editor";
-import { useGallery } from "../../hooks/api-hooks/useGallery";
+import { useGallery } from "hooks/api-hooks/useGallery";
 
 interface GalleryProps {
   open: boolean;
@@ -45,7 +45,7 @@ const Gallery: React.FC<GalleryProps> = ({ open, handleOpen, editorRef }) => {
                   onClick={() => {
                     editorRef.current?.focus();
                     editorRef.current?.insertMarkdown(
-                      `![](${item.secure_url})`
+                      `![](${item.secure_url})`,
                     );
                     handleOpen();
                   }}
@@ -58,7 +58,7 @@ const Gallery: React.FC<GalleryProps> = ({ open, handleOpen, editorRef }) => {
                   />
                 </Card>
               );
-            }
+            },
           )}
         </div>
       </DialogBody>

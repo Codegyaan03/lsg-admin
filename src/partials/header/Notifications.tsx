@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Transition from "../../utils/Transition";
 import { HiOutlineChat } from "react-icons/hi";
+import Transition from "utils/Transition";
 
 function Notifications() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
