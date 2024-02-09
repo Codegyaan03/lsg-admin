@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 import { useDataSelector } from "reduxStore/store";
 import ScrapeCategoryList from "../components/ScrapeCategoryList";
 import { BiMenuAltRight } from "react-icons/bi";
+import { extractLink } from "utils/extractLink";
 
 const Scrape: React.FC = () => {
   const { token } = useDataSelector("auth");
@@ -33,8 +34,6 @@ const Scrape: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log("hi");
-
     logRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [log]);
 
@@ -79,11 +78,19 @@ const Scrape: React.FC = () => {
               {log && log.length > 0 ? (
                 log.map((item, index) => {
                   return (
-                    <p key={index} className="text-green-700 font-medium">
-                      {`[${item.service.trim().toUpperCase()}]:
+                    <p
+                      key={index}
+                      className={
+                        item.level === "info"
+                          ? "text-green-700 font-medium"
+                          : "text-red-700 font-medium"
+                      }
+                      dangerouslySetInnerHTML={{
+                        __html: `[${item.service.trim().toUpperCase()}]:
                       ${moment(item.date).format("YYYY/MM/DD h:mm:ss A")} -
-                      ${item.message}`}
-                    </p>
+                      ${extractLink(item.message)}`,
+                      }}
+                    ></p>
                   );
                 })
               ) : (
