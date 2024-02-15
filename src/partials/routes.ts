@@ -16,6 +16,7 @@ interface RouteWithoutChild {
   isHaveChild: false;
   element: React.FC;
   child?: undefined;
+  isShowInSidebar: boolean;
 }
 
 interface RouteWithChild {
@@ -25,6 +26,7 @@ interface RouteWithChild {
   isHaveChild: true;
   element?: undefined;
   child: Child[];
+  isShowInSidebar: boolean;
 }
 
 type Route = RouteWithoutChild | RouteWithChild;
@@ -36,6 +38,7 @@ let routes: Route[] = [
     name: "Dashboard",
     isHaveChild: false,
     element: Dashboard,
+    isShowInSidebar: true,
   },
 
   {
@@ -44,6 +47,7 @@ let routes: Route[] = [
     name: "Scrape",
     isHaveChild: false,
     element: Scrape,
+    isShowInSidebar: true,
   },
 
   {
@@ -51,6 +55,7 @@ let routes: Route[] = [
     icon: HiOutlinePencil,
     name: "Contents",
     isHaveChild: true,
+    isShowInSidebar: true,
     child: [
       {
         path: "/editorials",
@@ -75,6 +80,7 @@ let routes: Route[] = [
     icon: HiOutlineUsers,
     name: "Users",
     isHaveChild: true,
+    isShowInSidebar: true,
     child: [
       {
         path: "/all",
@@ -87,6 +93,14 @@ let routes: Route[] = [
         element: Users,
       },
     ],
+  },
+  {
+    isHaveChild: false,
+    path: "/contents/editorials/:id",
+    name: "Editorial",
+    element: PostCreate,
+    icon: HiOutlineUsers,
+    isShowInSidebar: false,
   },
 ];
 

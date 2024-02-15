@@ -113,6 +113,9 @@ const Sidebar: React.FC<SidebarProps> = ({
             </h3>
             <ul className="mt-3">
               {routes.map((item, index) => {
+                if (!item.isShowInSidebar) {
+                  return <></>;
+                }
                 return (
                   <React.Fragment key={index}>
                     {item.isHaveChild ? (

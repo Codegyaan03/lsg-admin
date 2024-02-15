@@ -36,8 +36,9 @@ const Editor: React.FC<EditorProps> = ({ content, handleContent }) => {
   const axiosWithoutToken = useAxios(false);
   const editorRef = useRef<MDXEditorMethods>(null);
   async function imageUploadHandler(image: File) {
-    const res =
-      await axiosInstance.get<ApiResponse<{ url: string }>>("/upload-image");
+    const res = await axiosInstance.get<ApiResponse<{ url: string }>>(
+      "/upload-image"
+    );
     const form = new FormData();
     form.append("file", image);
     const imageData = await axiosWithoutToken.put(res.data.result.url, form);
@@ -46,48 +47,46 @@ const Editor: React.FC<EditorProps> = ({ content, handleContent }) => {
   }
 
   return (
-    <Card className="h-full">
-      <MDXEditor
-        markdown={content}
-        contentEditableClassName="editor-content"
-        onChange={handleContent}
-        onError={(err) => console.log(err)}
-        ref={editorRef}
-        plugins={[
-          codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
-          codeMirrorPlugin({
-            codeBlockLanguages: { js: "JavaScript", css: "CSS" },
-          }),
-          headingsPlugin(),
-          listsPlugin(),
-          linkPlugin(),
-          linkDialogPlugin(),
-          thematicBreakPlugin(),
-          markdownShortcutPlugin(),
-          imagePlugin({ imageUploadHandler }),
-          tablePlugin(),
-          toolbarPlugin({
-            toolbarContents: () => (
-              <>
-                <UndoRedo />
-                <Separator />
-                <BoldItalicUnderlineToggles />
-                <Separator />
-                <ListsToggle />
-                <Separator />
-                <BlockTypeSelect />
-                <Separator />
-                <CreateLink />
-                <InsertImage />
-                <InsertTable />
-                <Separator />
-                <GalleryInsert editorRef={editorRef} />
-              </>
-            ),
-          }),
-        ]}
-      />
-    </Card>
+    <MDXEditor
+      markdown={content}
+      contentEditableClassName="editor-content"
+      onChange={handleContent}
+      onError={(err) => console.log(err)}
+      ref={editorRef}
+      plugins={[
+        codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
+        codeMirrorPlugin({
+          codeBlockLanguages: { js: "JavaScript", css: "CSS" },
+        }),
+        headingsPlugin(),
+        listsPlugin(),
+        linkPlugin(),
+        linkDialogPlugin(),
+        thematicBreakPlugin(),
+        markdownShortcutPlugin(),
+        imagePlugin({ imageUploadHandler }),
+        tablePlugin(),
+        toolbarPlugin({
+          toolbarContents: () => (
+            <>
+              <UndoRedo />
+              <Separator />
+              <BoldItalicUnderlineToggles />
+              <Separator />
+              <ListsToggle />
+              <Separator />
+              <BlockTypeSelect />
+              <Separator />
+              <CreateLink />
+              <InsertImage />
+              <InsertTable />
+              <Separator />
+              <GalleryInsert editorRef={editorRef} />
+            </>
+          ),
+        }),
+      ]}
+    />
   );
 };
 
