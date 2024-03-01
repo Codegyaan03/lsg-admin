@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Card } from "@material-tailwind/react";
 import { GalleryInsert } from "./GalleryInsert";
 import {
@@ -31,7 +31,7 @@ import "./editor.css";
 import { EditorProps } from "./interface";
 import { useAxios } from "hooks/useAxios";
 
-const Editor: React.FC<EditorProps> = ({ content, handleContent }) => {
+const Editor: React.FC<EditorProps> = ({ content }) => {
   const axiosInstance = useAxios(true);
   const axiosWithoutToken = useAxios(false);
   const editorRef = useRef<MDXEditorMethods>(null);
@@ -46,13 +46,19 @@ const Editor: React.FC<EditorProps> = ({ content, handleContent }) => {
     return imageData.data.secure_url;
   }
 
+  useEffect(() => {
+    editorRef.current?.setMarkdown(content);
+  }, [content]);
+
   return (
     <MDXEditor
       markdown={content}
       contentEditableClassName="editor-content"
-      onChange={handleContent}
-      onError={(err) => console.log(err)}
       ref={editorRef}
+      onChange={(markdown) => {
+        console.log(markdown);
+        editorRef.current?.setMarkdown(markdown);
+      }}
       plugins={[
         codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
         codeMirrorPlugin({

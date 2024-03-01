@@ -114,7 +114,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <ul className="mt-3">
               {routes.map((item, index) => {
                 if (!item.isShowInSidebar) {
-                  return <></>;
+                  return <React.Fragment key={index}></React.Fragment>;
                 }
                 return (
                   <React.Fragment key={index}>
@@ -173,9 +173,9 @@ const Sidebar: React.FC<SidebarProps> = ({
 
                           <AccordionBody>
                             <ul className={`pl-9 mt-1 listCircle`}>
-                              {item.child?.map((child, index) => {
+                              {item.child?.map((child) => {
                                 return (
-                                  <React.Fragment key={index}>
+                                  <React.Fragment key={child.path}>
                                     {child.name && (
                                       <li
                                         className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${

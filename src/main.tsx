@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
 });
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement,
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
@@ -58,7 +58,7 @@ root.render(
                 className={"p-0"}
               />
               <Loader />
-              <div className="h-screen bg-[#f0f5f9] ">
+              <div className="h-screen bg-[#f0f5f9] overflow-y-scroll">
                 <Router>
                   <Routes>
                     <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -73,7 +73,7 @@ root.render(
         </PersistGate>
       </Provider>
     </ErrorBoundary>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
 declare module "@tanstack/react-query" {

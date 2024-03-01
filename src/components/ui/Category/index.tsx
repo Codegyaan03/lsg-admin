@@ -1,7 +1,12 @@
 import React from "react";
 import { Select, Option } from "@material-tailwind/react";
 
-const EditorialCategory: React.FC = () => {
+interface ListProps {
+  className?: string;
+  label: string;
+}
+
+const List: React.FC<ListProps> = ({ className, label }) => {
   const versionOptions = [
     "Travel",
     "Education",
@@ -11,9 +16,9 @@ const EditorialCategory: React.FC = () => {
   ];
 
   return (
-    <div>
-      <div className="w-72">
-        <Select label="Select Category">
+    <div className={className}>
+      <div className="w-full">
+        <Select label={label}>
           {versionOptions.map((option, index) => (
             <Option key={index}>{option}</Option>
           ))}
@@ -23,4 +28,4 @@ const EditorialCategory: React.FC = () => {
   );
 };
 
-export default EditorialCategory;
+export default List;
