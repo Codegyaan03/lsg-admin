@@ -17,10 +17,8 @@ export const useScrape = () => {
   const editorialCardDataQuery = useQuery({
     queryKey: ["editorials"],
     queryFn: () => axiosInstance.get<ApiResponse<Article[]>>("/editorial/all"),
-    // enabled:
   });
 
-  console.log("fdsfsdfdsfd", editorialCardDataQuery.data);
   return {
     scrapeEditorialMutation,
     editorialCardDataQuery,
