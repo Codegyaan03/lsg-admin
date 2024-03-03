@@ -28,16 +28,24 @@ const PostCreate: React.FC = () => {
         <Editor content={getSingleItem.data?.data.result.content || ""} />
       </Card>
       <div className="flex flex-col gap-5 h-full">
-        <Card className="p-4 flex gap-2 flex-row justify-start items-center">
+        {/* <Card className="p-4 flex gap-2 flex-row justify-start items-center">
           <Button color="indigo" onClick={() => setOpen(true)}>
             Choose Thumbnail
           </Button>
           {image?.name}
-        </Card>
-        <Card className="flex p-4 flex-1 flex-col items-center gap-4 justify-center">
-          <List label="Category" />
-          <List label="Tags" />
-        </Card>
+        </Card> */}
+        <div className="flex p-4 items-center gap-4 justify-center">
+          <Card>
+            <Button color="indigo" onClick={() => setOpen(true)}>
+              Choose Thumbnail
+            </Button>
+            {image?.name}
+          </Card>
+          <Card>
+            <List label="Category" />
+            <List label="Tags" />
+          </Card>
+        </div>
       </div>
       <div className="justify-start items-center flex">
         <Button color="indigo">Publish</Button>

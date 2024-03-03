@@ -7,7 +7,8 @@ const config = withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      sans: ["Jost", "sans-serif"],
+      // sans: ["Jost", "sans-serif"],
+      sans: ["Raleway", "sans-serif"],
       dosis: ["Dosis", "sans-serif"],
     },
     input: {
