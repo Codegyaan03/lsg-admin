@@ -7,7 +7,7 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import routes from "./routes";
-import "./sidebar.scss";
+import "./sidebar.css";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -170,7 +170,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                               </div>
                             </div>
                           </AccordionHeader>
-
                           <AccordionBody>
                             <ul className={`pl-9 mt-1 listCircle`}>
                               {item.child?.map((child) => {
@@ -180,7 +179,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                       <li
                                         className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
                                           pathname ===
-                                            `${item.path}${child.path}` &&
+                                            `/${item.path}${child.path}` &&
                                           "active"
                                         }`}
                                       >
