@@ -6,7 +6,7 @@ type scrapeEditorialPostDataType = {
   option: number;
 };
 
-export const useScrape = () => {
+export const useScrape = (page?: number, limit?: number, search?: string) => {
   const axiosInstance = useAxios(true);
 
   const scrapeEditorialMutation = useMutation({
@@ -15,8 +15,11 @@ export const useScrape = () => {
   });
 
   const editorialCardDataQuery = useQuery({
-    queryKey: ["editorials"],
-    queryFn: () => axiosInstance.get<ApiResponse<Article[]>>("/editorial/all"),
+    queryKey: ["editorials", page, limit, search],
+    queryFn: () =>
+      axiosInstance.get<ApiResponse<{ editorial: Article[]; total: number }>>(
+        `/editorial/all?page=${page}&limit=${limit}&search=${search}`
+      ),
   });
 
   return {
