@@ -6,7 +6,7 @@ type scrapeEditorialPostDataType = {
   option: number;
 };
 
-export const useScrape = (page: number, limit: number, search: string) => {
+export const useScrape = (page?: number, limit?: number, search?: string) => {
   const axiosInstance = useAxios(true);
 
   const scrapeEditorialMutation = useMutation({
