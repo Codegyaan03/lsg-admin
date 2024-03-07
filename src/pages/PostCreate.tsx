@@ -9,6 +9,8 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Typography,
+  Input,
 } from "@material-tailwind/react";
 
 import EditorialImage from "components/ui/EditorialImage";
@@ -28,24 +30,40 @@ const PostCreate: React.FC = () => {
         <Editor content={getSingleItem.data?.data.result.content || ""} />
       </Card>
       <div className="flex flex-col gap-5 h-full">
-        {/* <Card className="p-4 flex gap-2 flex-row justify-start items-center">
+        <Card className="p-4 justify-center">
+          <Typography variant="small" className="mb-2 text-black font-semibold">
+            Title
+          </Typography>
+          <Input
+            value={getSingleItem.data?.data.result.title}
+            name="title"
+            label="Title"
+          />
+        </Card>
+
+        <Card className="p-4 justify-center">
+          <Typography variant="small" className="mb-2 text-black font-semibold">
+            Select Category
+          </Typography>
+          <List label="Category" />
+        </Card>
+
+        <Card className="p-4 justify-center">
+          <Typography variant="small" className="mb-2 text-black font-semibold">
+            Select Tags
+          </Typography>
+          <List label="Tags" />
+        </Card>
+
+        <Card className="p-4 justify-center items-start">
+          <Typography variant="small" className="mb-2 text-black font-semibold">
+            Select Thumbnail
+          </Typography>
           <Button color="indigo" onClick={() => setOpen(true)}>
             Choose Thumbnail
           </Button>
           {image?.name}
-        </Card> */}
-        <div className="flex p-4 items-center gap-4 justify-center">
-          <Card>
-            <Button color="indigo" onClick={() => setOpen(true)}>
-              Choose Thumbnail
-            </Button>
-            {image?.name}
-          </Card>
-          <Card>
-            <List label="Category" />
-            <List label="Tags" />
-          </Card>
-        </div>
+        </Card>
       </div>
       <div className="justify-start items-center flex">
         <Button color="indigo">Publish</Button>
